@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -70,17 +71,17 @@ a {
 // `;
 
 const H1 = styled.h1`
-    color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 function App() {
-    return (
-        <>
-            <GlobalStyle />
-            <Router />
-        </>
-    );
+  return (
+    <>
+      <GlobalStyle />
+      <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </>
+  );
 }
 
 export default App;
-

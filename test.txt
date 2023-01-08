@@ -1,0 +1,13 @@
+리액트 쿼리 모듈 설치:
+D:\react-master\prac-ts>
+
+npm i react-query
+npm audit fix --force
+
+
+서버 시작:
+npm run start
+
+
+site:
+https://www.npmjs.com/package/react-query

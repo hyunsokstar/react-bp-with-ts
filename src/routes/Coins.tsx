@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-interface CoinInterface {
+import { useQuery } from "react-query";
+import { fetchCoins } from "../api";
+
+
+interface ICoin {
   id: string;
   name: string;
   symbol: string;
@@ -64,18 +68,8 @@ const CoinInfoWrapper = styled.div`
 `;
 
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("https://api.coinpaprika.com/v1/coins");
-      const json = await response.json();
-      setCoins(json.slice(0, 100));
-      setLoading(false);
-    })();
-    console.log("coins : ", coins);
-  }, []);
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 
   return (
     <Container>
@@ -84,11 +78,12 @@ function Coins() {
       </Header>
 
       <CoinsList>
-        {loading ? (
+        {/* {loading ? ( */}
+        {isLoading ? (
           <Loader>Loading...</Loader>
         ) : (
           <CoinsList>
-            {coins.map((coin) => (
+            {data?.slice(0, 100).map((coin) => (
               <Coin key={coin.id}>
                 <Link to={`/${coin.id}`} state={{ name: coin.name }}>
                   <CoinInfoWrapper>
