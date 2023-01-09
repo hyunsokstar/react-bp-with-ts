@@ -177,8 +177,8 @@ function Coin() {
 
   const loading = infoLoading || tickersLoading;
 
-  console.log("coinId : ", coinId);
-  console.log("state : ", state);
+  // console.log("coinId : ", coinId);
+  // console.log("state : ", state);
 
   return (
     <Container>
@@ -257,8 +257,11 @@ function Coin() {
           </TabButtons>
 
           <Routes>
-            <Route path="price" element={<Price />} />
-            <Route path="chart" element={<Chart />} />
+            <Route path={`/price`} element={<Price />} />
+            <Route
+              path={`/chart`}
+              element={<Chart coinId={coinId} />}
+            />
           </Routes>
 
           <div className="content">
